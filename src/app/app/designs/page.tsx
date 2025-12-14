@@ -3,10 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AuthGate from '@/components/AuthGate';
-import LicenseGate from '@/components/LicenseGate';
 import UserMenu from '@/components/UserMenu';
-import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/lib/supabase/client';
 
 interface Design {
   id: string;
@@ -122,7 +119,6 @@ export default function MyDesignsPage() {
 
   return (
     <AuthGate>
-      <LicenseGate>
         <div className="min-h-screen bg-off-white">
           {/* Header */}
           <header className="bg-white border-b border-gray-200">
@@ -274,7 +270,6 @@ export default function MyDesignsPage() {
             )}
           </div>
         </div>
-      </LicenseGate>
     </AuthGate>
   );
 }

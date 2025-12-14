@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function LandingPage() {
-  const gumroadUrl = process.env.NEXT_PUBLIC_GUMROAD_PRODUCT_URL || 'https://snapworxxbrand.gumroad.com/l/snapbrandxx';
 
   return (
     <div className="min-h-screen bg-white">
@@ -31,14 +30,12 @@ export default function LandingPage() {
             >
               Log In
             </Link>
-            <a
-              href={gumroadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/login"
               className="px-4 py-2 text-sm font-medium text-white bg-brand-red hover:bg-brand-red-dark rounded-lg transition-colors"
             >
-              Buy on Gumroad
-            </a>
+              Admin Login
+            </Link>
           </div>
         </div>
       </header>
@@ -69,19 +66,11 @@ export default function LandingPage() {
               Export everything with consistent branding across every image.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <a
-                href={gumroadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 text-base font-medium text-white bg-brand-red hover:bg-brand-red-dark rounded-lg transition-colors shadow-lg"
-              >
-                Buy Once on Gumroad
-              </a>
               <Link
                 href="/login"
-                className="px-8 py-4 text-base font-medium text-gray-700 bg-white border-2 border-gray-300 hover:border-gray-400 rounded-lg transition-colors"
+                className="px-8 py-4 text-base font-medium text-white bg-brand-red hover:bg-brand-red-dark rounded-lg transition-colors shadow-lg"
               >
-                Log In
+                Admin Login
               </Link>
             </div>
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
@@ -287,20 +276,18 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-white rounded-lg p-8 md:p-12 shadow-xl text-center">
             <h2 className="text-3xl md:text-4xl font-mono font-bold text-dark mb-4">
-              One-time purchase. Buy once. Use forever.
+              Professional Bulk Watermarking Tool
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              No subscriptions, no monthly fees, no usage limits. Purchase once and get lifetime access 
-              to all features and updates.
+              Design once, apply to hundreds of images instantly. Perfect for real estate agents, 
+              content creators, and media teams.
             </p>
-            <a
-              href={gumroadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/login"
               className="inline-block px-8 py-4 text-base font-medium text-white bg-brand-red hover:bg-brand-red-dark rounded-lg transition-colors shadow-lg"
             >
-              Buy on Gumroad
-            </a>
+              Admin Login
+            </Link>
           </div>
         </div>
       </section>
@@ -312,19 +299,11 @@ export default function LandingPage() {
             Ready to brand faster — without fighting your tools?
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={gumroadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 text-base font-medium text-white bg-brand-red hover:bg-brand-red-dark rounded-lg transition-colors shadow-lg"
-            >
-              Buy Once on Gumroad
-            </a>
             <Link
               href="/login"
-              className="px-8 py-4 text-base font-medium text-gray-300 bg-gray-800 hover:bg-gray-700 border-2 border-gray-700 rounded-lg transition-colors"
+              className="px-8 py-4 text-base font-medium text-white bg-brand-red hover:bg-brand-red-dark rounded-lg transition-colors shadow-lg"
             >
-              Log In
+              Admin Login
             </Link>
           </div>
         </div>

@@ -9,7 +9,6 @@ import Step1OrderImages from '@/components/Step1OrderImages';
 import FontLibrary from '@/components/FontLibrary';
 import UserMenu from '@/components/UserMenu';
 import AuthGate from '@/components/AuthGate';
-import LicenseGate from '@/components/LicenseGate';
 import { ProcessedImage } from '@/lib/watermark/types';
 import { WatermarkProvider } from '@/lib/watermark';
 
@@ -60,7 +59,6 @@ export default function AppPage() {
 
   return (
     <AuthGate>
-      <LicenseGate>
     <div className="flex flex-col h-screen w-screen bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950 text-gray-100" style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
       {/* Animated background pattern */}
       <div className="fixed inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
@@ -155,7 +153,6 @@ export default function AppPage() {
         )}
       </div>
     </div>
-      </LicenseGate>
     </AuthGate>
   );
 }
