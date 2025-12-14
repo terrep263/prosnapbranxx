@@ -22,7 +22,6 @@ interface ActiveSession {
 }
 
 export default function MyDesignsPage() {
-  const { user } = useAuth();
   const router = useRouter();
   const [designs, setDesigns] = useState<Design[]>([]);
   const [loading, setLoading] = useState(true);
@@ -36,17 +35,7 @@ export default function MyDesignsPage() {
 
   async function loadDesigns() {
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        setLoading(false);
-        return;
-      }
-
-      const response = await fetch('/api/designs', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      });
+      const response = await fetch('/api/designs');
 
       if (!response.ok) {
         throw new Error('Failed to load designs');
@@ -63,17 +52,7 @@ export default function MyDesignsPage() {
 
   async function checkActiveSession() {
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        setSessionLoading(false);
-        return;
-      }
-
-      const response = await fetch('/api/sessions/current', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      });
+      const response = await fetch('/api/sessions/current');
 
       if (response.ok) {
         const data = await response.json();
@@ -95,14 +74,8 @@ export default function MyDesignsPage() {
     }
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
       const response = await fetch(`/api/designs/${id}`, {
         method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
       });
 
       if (!response.ok) {
@@ -273,4 +246,3 @@ export default function MyDesignsPage() {
     </AuthGate>
   );
 }
-
