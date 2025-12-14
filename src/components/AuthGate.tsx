@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/contexts/AuthContext';
+import { isAuthenticated } from '@/lib/auth';
 
 interface AuthGateProps {
   children: React.ReactNode;
@@ -10,16 +10,29 @@ interface AuthGateProps {
 }
 
 export default function AuthGate({ children, redirectTo = '/login' }: AuthGateProps) {
-  const { user, loading } = useAuth();
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push(redirectTo);
-    }
-  }, [user, loading, router, redirectTo]);
+    const checkAuth = () => {
+      const authStatus = isAuthenticated();
+      setAuthenticated(authStatus);
+      
+      if (!authStatus) {
+        router.push(redirectTo);
+      }
+    };
 
-  if (loading) {
+    checkAuth();
+    
+    // Check auth status periodically (every 5 seconds) to catch logout
+    const interval = setInterval(checkAuth, 5000);
+    
+    return () => clearInterval(interval);
+  }, [router, redirectTo]);
+
+  if (authenticated === null) {
+    // Loading state
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="flex flex-col items-center gap-4">
@@ -30,10 +43,9 @@ export default function AuthGate({ children, redirectTo = '/login' }: AuthGatePr
     );
   }
 
-  if (!user) {
+  if (!authenticated) {
     return null; // Will redirect via useEffect
   }
 
   return <>{children}</>;
 }
-
